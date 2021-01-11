@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "K3e8bTN/38APNhnHaUc9Z+xxcEyj+ye6SVG7B+BZvQRIpMHuNBEXbx1BfCknQpYuGZlafLPCU9huHadcMpezMw==",
+  "dgSpecHash": "nMhE9vCtJZJQi8U+saPfPI8VdfdSqv/3sUIvQTUdLmKeM4c7E74oWFtGPmt1ZAOcsWUlg5XyX0BbSPhXcTPlSA==",
   "success": true,
-  "projectFilePath": "D:\\reports\\BlazorAppQue\\BlazorAppQue.csproj",
+  "projectFilePath": "D:\\template\\BlazorAppQue\\BlazorQue\\BlazorAppQue.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

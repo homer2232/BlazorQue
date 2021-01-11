@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\reports\\BlazorAppQue\\BlazorAppQue.csproj",
+      "projectUniqueName": "D:\\template\\BlazorAppQue\\BlazorQue\\BlazorAppQue.csproj",
       "projectName": "BlazorAppQue",
-      "projectPath": "D:\\reports\\BlazorAppQue\\BlazorAppQue.csproj",
+      "projectPath": "D:\\template\\BlazorAppQue\\BlazorQue\\BlazorAppQue.csproj",
       "packagesPath": "C:\\Users\\Fruit\\.nuget\\packages\\",
-      "outputPath": "D:\\reports\\BlazorAppQue\\obj\\",
+      "outputPath": "D:\\template\\BlazorAppQue\\BlazorQue\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Microsoft\\Xamarin\\NuGet\\",
