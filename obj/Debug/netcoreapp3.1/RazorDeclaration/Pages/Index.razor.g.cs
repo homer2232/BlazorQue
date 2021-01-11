@@ -105,7 +105,7 @@ using Microsoft.AspNetCore.Components;
 #line hidden
 #nullable disable
 #nullable restore
-#line 75 "D:\reports\BlazorAppQue\Pages\Index.razor"
+#line 74 "D:\reports\BlazorAppQue\Pages\Index.razor"
       
     public string[] images = { "/picBlazor/cap1.jpg", "picBlazor/cap2.jpg", "/picBlazor/cap3.jpg", "/picBlazor/cap4.jpg", "/picBlazor/cap5.jpg" };
 
