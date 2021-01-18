@@ -1,16 +1,16 @@
 ﻿@page "/"
 @inherits LayoutComponentBase
-@inject Microsoft.JSInterop.IJSRuntime JsRuntime;
-@functions{
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
+@inject Microsoft.JSInterop.IJSRuntime JsRuntime
+@*@functions{
+        protected async override Task OnAfterRenderAsync(bool firstRender)
         {
-            await JsRuntime.InvokeAsync<object>("initializeCarousel");
-            firstRender = false;
+            if (firstRender)
+            {
+                await JsRuntime.InvokeAsync<object>("initializeCarousel");
+                firstRender = false;
+            }
         }
-    }
-}
+    }*@
 <h1>Hello!</h1>
 
 Welcome to my new app.
@@ -58,39 +58,93 @@ Welcome to my new app.
         @*<option selected></option>
             <option disabled></option>*@
     </select>
-
 </div>
 <br />
 <br />
-
 <select id="Сategory" name="Сategory" multiple>
     @foreach (var item in DropСategory)
     {
         <option>@item.CatName</option>
     }
 </select>
-<div style="padding-bottom:500px"></div>
 
+<br />
+<br />
+
+@*<textarea>@foreach(var che in BoxList)
+    {
+        @che.TextName
+    }</textarea>*@
+<br />
+<br />
+@*<button style="padding: 0 50px 50px 0" @onchange="AddToBox"></button>*@
+<div style="padding-bottom:500px"></div>
 @code{
     public string[] images = { "/picBlazor/cap1.jpg", "picBlazor/cap2.jpg", "/picBlazor/cap3.jpg", "/picBlazor/cap4.jpg", "/picBlazor/cap5.jpg" };
 
-    public List<Сategory> DropСategory = new List<Сategory>();
+    private IList<Сategory> DropСategory = new[] {
+        new Сategory { CatId=1, CatName ="Давление воды на входе в котел, МПа" },
+        new Сategory { CatId=1, CatName ="Давление в паровом коллекторе, МПа" },
+        new Сategory { CatId=1, CatName ="Давелние максимальное, бра" },
+        new Сategory { CatId=4, CatName ="Давление пара за главным стопорным клапаном, МПа" }
+    };
+    @*@onchange="eventArgs => { CheckboxClicked(item.CatName, eventArgs.Value); }"*@
+        //public IList<string> ClubMember { get; set; } = new List<string>();
+        //void CheckboxClicked(string clubID, object checkedValue)
+        //{
+        //    if ((bool)checkedValue)
+        //    {
+        //        if (!ClubMember.Contains(clubID))
+        //        {
+        //            ClubMember.Add(clubID);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (ClubMember.Contains(clubID))
+        //        {
+        //            ClubMember.Remove(clubID);
+        //        }
+        //    }
+        //}
 
-    protected async override Task OnInitializedAsync()
-    {
-        DropСategory = new List<Сategory>()
-{
-            new Сategory(){ CatId=1, CatName ="Давление воды на входе в котел, МПа"},
-            new Сategory(){ CatId=2, CatName ="Давление в паровом коллекторе, МПа"},
-            new Сategory(){ CatId=3, CatName ="Давелние максимальное, бра"},
-            new Сategory(){ CatId=4, CatName ="Давление пара за главным стопорным клапаном, МПа"}
-        };
+        //public List<String> ClubList()
+        //{
+        //    // fetch from API or...
+        //    List<String> c = new List<String>();
+        //    c.Add("Clube01");
+        //    c.Add("Clube02");
+        //    return c;
+        //}
+        protected override async void OnAfterRender(bool firstRender)
+            {
+                await JsRuntime.InvokeVoidAsync("addjQuery");
+                base.OnAfterRender(firstRender);
+            }
 
-    }
+            static string result = Regex.Replace(result, "<[^>]+>", string.Empty);
 
-    public class Сategory
-    {
-        public int CatId { get; set; }
-        public string CatName { get; set; }
-    }
+
+
+            public class Сategory
+            {
+                public int CatId { get; set; }
+                public string CatName { get; set; }
+            }
+
+
+
+            public class ForBox
+            {
+                public int TextID { get; set; }
+                public string TextName { get; set; }
+            }
+
+            public IList<ForBox> BoxList = new List<ForBox>();
+
+            public void AddToBox()
+            {
+                BoxList.Add(new ForBox { TextName = DropСategory.FirstOrDefault().CatName });
+            }
+
 }

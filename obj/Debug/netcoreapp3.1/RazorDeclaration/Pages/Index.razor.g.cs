@@ -81,6 +81,13 @@ using Microsoft.AspNetCore.Components;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "D:\reports\BlazorAppQue\_Imports.razor"
+using System.Text.RegularExpressions;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : LayoutComponentBase
     {
@@ -90,44 +97,82 @@ using Microsoft.AspNetCore.Components;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 4 "D:\reports\BlazorAppQue\Pages\Index.razor"
-           
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JsRuntime.InvokeAsync<object>("initializeCarousel");
-            firstRender = false;
-        }
-    }
+#line 82 "D:\reports\BlazorAppQue\Pages\Index.razor"
+      
+    public string[] images = { "/picBlazor/cap1.jpg", "picBlazor/cap2.jpg", "/picBlazor/cap3.jpg", "/picBlazor/cap4.jpg", "/picBlazor/cap5.jpg" };
+
+    private IList<Сategory> DropСategory = new[] {
+        new Сategory { CatId=1, CatName ="Давление воды на входе в котел, МПа" },
+        new Сategory { CatId=1, CatName ="Давление в паровом коллекторе, МПа" },
+        new Сategory { CatId=1, CatName ="Давелние максимальное, бра" },
+        new Сategory { CatId=4, CatName ="Давление пара за главным стопорным клапаном, МПа" }
+    };
+    
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 74 "D:\reports\BlazorAppQue\Pages\Index.razor"
-      
-    public string[] images = { "/picBlazor/cap1.jpg", "picBlazor/cap2.jpg", "/picBlazor/cap3.jpg", "/picBlazor/cap4.jpg", "/picBlazor/cap5.jpg" };
+#line 91 "D:\reports\BlazorAppQue\Pages\Index.razor"
+                                                                                    
+        //public IList<string> ClubMember { get; set; } = new List<string>();
+        //void CheckboxClicked(string clubID, object checkedValue)
+        //{
+        //    if ((bool)checkedValue)
+        //    {
+        //        if (!ClubMember.Contains(clubID))
+        //        {
+        //            ClubMember.Add(clubID);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (ClubMember.Contains(clubID))
+        //        {
+        //            ClubMember.Remove(clubID);
+        //        }
+        //    }
+        //}
 
-    public List<Сategory> DropСategory = new List<Сategory>();
+        //public List<String> ClubList()
+        //{
+        //    // fetch from API or...
+        //    List<String> c = new List<String>();
+        //    c.Add("Clube01");
+        //    c.Add("Clube02");
+        //    return c;
+        //}
+        protected override async void OnAfterRender(bool firstRender)
+            {
+                await JsRuntime.InvokeVoidAsync("addjQuery");
+                base.OnAfterRender(firstRender);
+            }
 
-    protected async override Task OnInitializedAsync()
-    {
-        DropСategory = new List<Сategory>()
-{
-            new Сategory(){ CatId=1, CatName ="Давление воды на входе в котел, МПа"},
-            new Сategory(){ CatId=2, CatName ="Давление в паровом коллекторе, МПа"},
-            new Сategory(){ CatId=3, CatName ="Давелние максимальное, бра"},
-            new Сategory(){ CatId=4, CatName ="Давление пара за главным стопорным клапаном, МПа"}
-        };
+            static string result = Regex.Replace(result, "<[^>]+>", string.Empty);
 
-    }
 
-    public class Сategory
-    {
-        public int CatId { get; set; }
-        public string CatName { get; set; }
-    }
+
+            public class Сategory
+            {
+                public int CatId { get; set; }
+                public string CatName { get; set; }
+            }
+
+
+
+            public class ForBox
+            {
+                public int TextID { get; set; }
+                public string TextName { get; set; }
+            }
+
+            public IList<ForBox> BoxList = new List<ForBox>();
+
+            public void AddToBox()
+            {
+                BoxList.Add(new ForBox { TextName = DropСategory.FirstOrDefault().CatName });
+            }
+
 
 #line default
 #line hidden
